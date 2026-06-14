@@ -11,27 +11,32 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
+        // 1. FIND MID
 
-        stack<int>st;
-        ListNode *curr=head;
-        while(curr!=nullptr){
-            st.push(curr->val);
-            curr=curr->next;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
         }
+        ListNode* mid = slow;
+        // 2. REVERSE 2ND HALF
+        ListNode* prev = nullptr;
 
-        int n=st.size();
-        curr=head;
-        int cnt=1;
-        int res=0;
-        while(cnt<=n/2){
-            res=max(res,curr->val+st.top());
-            curr=curr->next;
-            st.pop();
-            cnt++;
+        while (mid != nullptr) {
+            ListNode* nextnode = mid->next;
+            mid->next = prev;
+            prev = mid; // Missing line
+            mid = nextnode;
         }
-        return res++;
-        
-
- 
+        // 3.FIND MAX
+        int result = 0;
+        ListNode* curr = head;
+        while (prev != nullptr) {
+            result = max(result, curr->val + prev->val);
+            curr = curr->next;
+            prev = prev->next;
+        }
+        return result;
     }
 };
