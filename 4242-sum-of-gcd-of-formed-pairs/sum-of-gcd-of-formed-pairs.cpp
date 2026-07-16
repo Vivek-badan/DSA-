@@ -1,12 +1,16 @@
 class Solution {
 public:
     long long gcd(long long a, long long b) {
-        while (b != 0) {
-            long long temp = b;
-            b = a % b;
-            a = temp;
+        while(a>0 && b>0){
+            if(a>b) a=a%b;
+            else{
+                b=b%a;
+            }
         }
-        return a;
+        if(a==0) return b;
+        else{
+            return a;
+        }
     }
 
     long long gcdSum(vector<int>& nums) {
