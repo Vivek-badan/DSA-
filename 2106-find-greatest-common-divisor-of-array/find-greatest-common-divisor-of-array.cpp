@@ -1,11 +1,17 @@
 class Solution {
 public:
-    int gcd(int a, int b) {
+int gcd(int a, int b) {
 
-    if (b == 0)
-        return a;
+    while (b != 0) {
 
-    return gcd(b, a % b);
+        int rem = a % b;
+
+        a = b;
+
+        b = rem;
+    }
+
+    return a;
 }
     int findGCD(vector<int>& nums) {
         sort(nums.begin(), nums.end());
