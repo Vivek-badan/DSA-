@@ -1,18 +1,24 @@
 class Solution {
 public:
     int maxProduct(int n) {
-       
-       vector<int>getdigits;
-       // EXTRACTION OF NUMBER 
-        while(n>0){
-            getdigits.push_back(n%10);
-            n=n/10;
-        }
-        //SORT THE ARRAY 
-        sort(getdigits.begin(),getdigits.end());
-        int m=getdigits.size();
-        return {getdigits[m-1]*getdigits[m-2]};
 
-        
+        int first = 0;
+        int second = 0;
+
+        while(n > 0){
+            int digit = n % 10;
+
+            if(digit >= first){
+                second = first;
+                first = digit;
+            }
+            else if(digit > second){
+                second = digit;
+            }
+
+            n /= 10;
+        }
+
+        return first * second;
     }
 };
