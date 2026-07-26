@@ -31,8 +31,8 @@ public:
             }
         }
 
-        long long option1 = 1LL * max1 * max2 * max3;
-        long long option2 = 1LL * max1 * min1 * min2;
+        long long option1 =  max1 * max2 * max3;
+        long long option2 =  max1 * min1 * min2;
 
         return max(option1, option2);
     }
