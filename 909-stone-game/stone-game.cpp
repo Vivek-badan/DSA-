@@ -17,28 +17,6 @@ public:
         return dp[i][j] = max(AliceTakesFirst, AliceTakesSecond);
     }
     bool stoneGame(vector<int>& piles) {
-        int n = piles.size();
-        vector<vector<int>> dp(n , vector<int>(n, 0));
-        // base case
-        for(int i = 0; i < n; i++){
-             dp[i][i] = piles[i];
-        }
-   
-
-        // bottom up
-        for (int i = n - 1; i >= 0; i--) {
-            for (int j = i+1; j < n; j++) {
-                
-                int AliceTakesFirst = piles[i] - dp[i + 1][j];
-
-                int AliceTakesSecond = piles[j] - dp[i][j-1];
-               
-                dp[i][j] = max(AliceTakesFirst, AliceTakesSecond);
-
-                
-            }
-
-        }
-       return dp[0][n - 1] > 0;
+      return true;
     }
 };
