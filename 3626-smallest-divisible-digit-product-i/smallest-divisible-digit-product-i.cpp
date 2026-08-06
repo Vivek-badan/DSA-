@@ -10,13 +10,12 @@ public:
         return product;
     }
     int smallestNumber(int n, int t) {
-        int ans=INT_MAX;
         for(int i=n ; i<=108;i++){
             if(productfunction(i) % t ==0){
                 return i;
             }
         }
-        return ans;
+        return -1;
         
     }
 };
