@@ -12,7 +12,7 @@ public:
                 break;
             }
         }
-        sort(nums1.begin(), nums1.begin() + m);
+        sort(nums1.begin(), nums1.begin() +m);
         sort(nums2.begin(), nums2.end());
 
         int j = 0;
