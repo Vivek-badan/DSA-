@@ -9,38 +9,35 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
 class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
-        
-        vector<int>inorder;
-        TreeNode*curr=root;
-        while(curr!=nullptr){
-            if(curr->left==nullptr){
-                inorder.push_back(curr->val);
-                curr=curr->right;
+    void solve(TreeNode* root, vector<int>& ans) {
 
-            }
-            else{
-                TreeNode*prev=curr->left;
-                while(prev->right && prev->right!=curr){
-                    prev=prev->right;
-
-                }
-                if(prev->right==nullptr){
-                    prev->right=curr;
-                    curr=curr->left;
-                }
-                else{
-                    prev->right=nullptr;
-                    inorder.push_back(curr->val);
-                    curr=curr->right;
-
-                }
-
-
-            }
+        // Base case
+        if (root == NULL) {
+            return;
         }
-        return inorder;
+
+        // Step 1: Traverse left subtree
+        solve(root->left,ans);
+
+
+        // Step 2: Store current node value
+        ans.push_back(root->val);
+
+
+        // Step 3: Traverse right subtree
+        solve(root->right,ans);
+
+    }
+
+    vector<int> inorderTraversal(TreeNode* root) {
+
+        vector<int> ans;
+
+        solve(root, ans);
+
+        return ans;
     }
 };
